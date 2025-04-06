@@ -24,14 +24,40 @@
   padding: 10px;
   border: none;
   background-color: green;
-
+  cursor: pointer;
 }
 .container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .sub {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  text-align: center;
+  border: 2px solid black;
+  width: 400px;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.para{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.iconbutton{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.addButtondel{
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  border: none;
+  background-color: red;
+  cursor: pointer;
 }

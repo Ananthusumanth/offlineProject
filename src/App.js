@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import {v4 as uuidv4} from "uuid"
+import { TiDeleteOutline } from "react-icons/ti";
 import './App.css';
 
 function App() {
 
   const [input, setInput] = useState("")
   const [data, setData] = useState([])
+  const [textdeletevalueId, settextdeletedValue] = useState([])
 
   const AddData = (event) => {
     event.preventDefault()
@@ -13,6 +15,20 @@ function App() {
       newObjects.push({id: uuidv4(), title: input})
     setData([...data, ...newObjects])
     setInput("")
+  }
+
+  const onDelete = (id) => {
+    const expectData = data.filter(each => each.id !== id)
+    setData(expectData)
+  }
+
+  const textdelete = (id) => {
+    if (textdeletevalueId.includes(id)){
+      const textfilterdata = textdeletevalueId.filter(each => each !== id)
+      settextdeletedValue(textfilterdata)
+    }else {
+      settextdeletedValue([...textdeletevalueId, id])
+    }
   }
 
   return (
@@ -25,13 +41,15 @@ function App() {
       {
         data.length === 0 ? <div>No Task to Yet to show</div> 
         :
-        // console.log(data)
         data.map(each => {
           return (
             <div key={each.id} className='sub'>
-            <p>{each.title}</p>
-            <button type='button'>delete</button>
-          </div>
+              <button type='button' className='iconbutton' onClick={(e) => textdelete(each.id)}><TiDeleteOutline size={25}/></button>
+              {
+                textdeletevalueId.includes(each.id) ? <del className='para'>{each.title}</del> : <p className='para'>{each.title}</p>
+              }
+              <button type='button' onClick={(e) => onDelete(each.id)} className='addButtondel'>delete</button>
+            </div>
           )
         })
       }
